@@ -1,2 +1,2 @@
 # CST336_GroupProject_OnlineCatalog
-Online Catalog
+Online Movie Catalog
