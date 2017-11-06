@@ -93,7 +93,7 @@
           echo"<td>".''.$movies['movieName'].''."</td>"; 
           echo"<td>".''.$movies['movieGenre'].''."</td>"; 
           echo"<td>".''.$movies['movieYear'].''."</td>"; 
-          echo"<td>Info</td>"; 
+          echo"<td> <a href='html_images.asp'>Preview</a> </td>"; 
         echo"</tr>"; 
       }
       ?>
