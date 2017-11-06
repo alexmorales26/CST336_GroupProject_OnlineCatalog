@@ -1,9 +1,12 @@
 <?php
+
     session_start();
     //$_SESSION['Movie'];
+
     include 'dbCon.php';
-    $conn = getDatabaseConnection();
     include 'inc/functions.php';
+    $conn = getDatabaseConnection();
+   
 
 ?>
 <!DOCTYPE html>
@@ -34,6 +37,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+
+                    <a class="navbar-brand" href="index.php">Movie Database</a>
+                </div>
+
+
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php">Home</a></li>
@@ -58,6 +66,9 @@
                                 <li><a href="#">Indie</a></li>
                             </ul>
                         </li>
+
+                        <li><a href="#">Checkout</a></li>
+
                         <li><a href="checkout.php">Checkout</a></li>
                         <li><a href="#">Random</a></li>
                         <li class="dropdown">
@@ -91,7 +102,9 @@
       //   echo "<br>"; 
       // }
     ?>
+
     <script src="js/javafunctions.js"></script>
+
   <div class="container">
     <table class="table table-striped">
       <thead>
