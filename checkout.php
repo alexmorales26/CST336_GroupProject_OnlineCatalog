@@ -2,7 +2,7 @@
 session_start();
 include'dbCon.php';
     function deleteItem(){
-    $conn=getDatabaseConnection("tcp");
+    $conn=getDatabaseConnection();
     $sql="DELETE FROM db_checkout WHERE checkoutId=".$_GET['checkoutId'];
     
      $stmt=$conn->prepare($sql);
@@ -29,7 +29,7 @@ include'dbCon.php';
  <a class="btn btn-success btn-lg" href="index.php" role="button"> Go Back </a>
  <input class="btn btn-primary btn-lg" type="submit" value="Purchase!" id="checkoutBtn">
 </nav>
-<div class="container">
+<div class="container" id="checkoutCartTable">
         <table class="table table-hover">
         <thead>
        <tr>
