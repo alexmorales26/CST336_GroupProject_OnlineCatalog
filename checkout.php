@@ -45,7 +45,7 @@ include'dbCon.php';
             <td>50</td>
             <td>
             <div class="inline">
-             <button type="button" class="btn btn-danger  btn-sm btn-block">Remove Item</button>
+                <a href="removeItem.php" class="btn btn-danger  btn-sm btn-block"role="button">Remove Item</a>
              </div>
             </td>
           </tr>

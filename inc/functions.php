@@ -109,15 +109,16 @@
             echo"<td>".''.$movies['movieYear'].''."</td>"; 
             echo"<td>";
             echo "<div class='container2'>";
-              echo "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#myModal'>Open Modal</button>";
-            
+              echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal'>Preview</button>";
+              echo " ";
+              echo "<button type='button' class='btn btn-success btn-sm'>Add to Cart</button>";
               echo "<div class='modal fade' id='myModal' role='dialog'>";
                 echo "<div class='modal-dialog'>";
                 
                   echo "<div class='modal-content'>";
                     echo "<div class='modal-header'>";
                       echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
-                      echo "<h4 class='modal-title'>Modal Header</h4>";
+                      echo "<h4 class='modal-title'> ".$movies['movieName']."</h4>";
                     echo "</div>";
                     echo "<div class='modal-body'>";
                       echo "<p>Some text in the modal.</p>";

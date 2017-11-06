@@ -3,16 +3,7 @@
     $conn = getDatabaseConnection();
     include 'inc/functions.php';
     
-    function displayMovies() {
-        global $conn;
-        $sql = "SELECT * FROM `db_movie`";
-                
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
-        //This will return an array of movie info
-        return $movies;
-    }
+ 
 ?>
 <!DOCTYPE html>
 <html>
