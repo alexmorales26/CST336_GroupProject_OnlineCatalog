@@ -107,6 +107,11 @@
             echo"<td>".''.$movies['movieGenre'].''."</td>"; 
             echo"<td>".''.$movies['movieYear'].''."</td>"; 
             echo"<td>";
+            echo "<div class='container2'>";
+              echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal'>Preview</button>";
+              echo " ";
+              echo "<button type='button' class='btn btn-success btn-sm'>Add to Cart</button>";
+              echo "<div class='modal fade' id='myModal' role='dialog'>";
             $name = replaceAll($movies['movieName']); 
             $pic = movieInfo($name);
             $info = overView($name);
@@ -120,6 +125,8 @@
                     echo "<div class='modal-header'>";
                       echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
                       echo "<h3>".''.$movies['movieName'].''."</h3>";
+                      echo "<h4 class='modal-title'> ".$movies['movieName']."</h4>";
+                      echo $movies['movieName'];
                     echo "</div>";
                     echo "<div class='modal-body'>";
                       echo "<p><img src='".''.$pic[0].''."' width='200'></p>";
