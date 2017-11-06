@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    //$_SESSION['Movie'];
     include 'dbCon.php';
     $conn = getDatabaseConnection();
     
@@ -35,14 +37,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Movie Database</a>
+                    <a class="navbar-brand" href="#">Movies</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="#">Popular</a></li>
                         <li><a href="#">Genre</a></li>
-                        <li><a href="#">Checkout</a></li>
+                        <li><a href="checkout.php">Checkout</a></li>
                         <li><a href="#">Random</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
@@ -75,5 +77,6 @@
         echo "<br>"; 
       }
     ?>
+    <script src="js/javafunctions.js"></script>
   </body>
 </html>

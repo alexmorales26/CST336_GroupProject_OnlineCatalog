@@ -34,3 +34,23 @@ body {
 .dropdown-menu > li > a:hover {
     color: white !important;
 }
+#checkOutTitle{
+    text-align: center ;
+    color:black;
+    vertical-align: middle;
+}
+table, th, td,tr {
+    border: 2px solid black;
+    text-align: center !important;
+    font-size: 1.2em;
+}
+table{
+    width: 50%;
+    height: 50%;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #D3D1D0;
+}
+.inline{
+    display: inline !important;
+}
