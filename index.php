@@ -69,11 +69,36 @@
         </nav>
 
     <?php
+      //$movies = displayMovies(); 
+      // foreach($movies as $movies){
+      //   echo $movies['movieId']. ' ' .$movies['movieName']. ' ' .$movies['movieGenre']; 
+      //   echo "<br>"; 
+      // }
+    ?>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Movie Name</th>
+          <th>Genre</th>
+          <th>Year</th>
+          <th>Info</th>
+        </tr>
+      </thead>
+      <tbody>
+      <?php
       $movies = displayMovies(); 
       foreach($movies as $movies){
-        echo $movies['movieId']. ' ' .$movies['movieName']. ' ' .$movies['movieGenre']; 
-        echo "<br>"; 
+       echo "<tr>";
+          echo"<td>".''.$movies['movieName'].''."</td>"; 
+          echo"<td>".''.$movies['movieGenre'].''."</td>"; 
+          echo"<td>".''.$movies['movieYear'].''."</td>"; 
+          echo"<td>Info</td>"; 
+        echo"</tr>"; 
       }
-    ?>
+      ?>
+      </tbody>
+      </table>
+  </div>
   </body>
 </html>
