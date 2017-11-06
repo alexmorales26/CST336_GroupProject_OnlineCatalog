@@ -1,7 +1,7 @@
 <?php
     include 'dbCon.php';
     $conn = getDatabaseConnection();
-    include 'inc/function.php';
+    include 'inc/functions.php';
     
     function displayMovies() {
         global $conn;
@@ -24,6 +24,12 @@
     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
   </head>
   <body>
     <h1> MovieNator </h1>
@@ -36,11 +42,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Movie Database</a>
+                    <a class="navbar-brand" href="index.php">Movie Database</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="index.php">Home</a></li>
                         <li><a href="Popularity.php">Popular</a></li>
                         <li><a href="#">Genre</a></li>
                         <li class="dropdown">
@@ -64,9 +70,9 @@
                     </ul>
                     <form class="navbar-form navbar-right">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" name="movieSelect" class="form-control" placeholder="Search">
                             <div class="input-group-btn">
-                                <button class="btn btn-default">
+                                <button type="sumbit" class="btn btn-default">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </div>

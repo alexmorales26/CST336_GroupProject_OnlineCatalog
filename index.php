@@ -1,17 +1,9 @@
 <?php
+
     include 'dbCon.php';
     $conn = getDatabaseConnection();
-    
-    function displayMovies() {
-        global $conn;
-        $sql = "SELECT * FROM `db_movie`";
-                
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
-        //This will return an array of movie info
-        return $movies;
-    }
+    include 'inc/functions.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,6 +14,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   </head>
   <body>
@@ -35,13 +33,32 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Movie Database</a>
+                    <a class="navbar-brand" href="index.php">Movie Database</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Popular</a></li>
-                        <li><a href="#">Genre</a></li>
+                        <li class="active"><a href="index.php">Home</a></li>
+                        <li><a href="Popularity.php">Popular</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Genre
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Crime</a></li>
+                                <li><a href="#">Thriller</a></li>
+                                <li><a href="#">Adventure</a></li>
+                                <li><a href="#">Fantasy</a></li>
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Science Fiction</a></li>
+                                <li><a href="#">Comedy</a></li>
+                                <li><a href="#">Drama</a></li>
+                                <li><a href="#">Music</a></li>
+                                <li><a href="#">Psychological</a></li>
+                                <li><a href="#">Horror</a></li>
+                                <li><a href="#">Romance</a></li>
+                                <li><a href="#">Mystery</a></li>
+                                <li><a href="#">Indie</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#">Checkout</a></li>
                         <li><a href="#">Random</a></li>
                         <li class="dropdown">
@@ -56,9 +73,9 @@
                     </ul>
                     <form class="navbar-form navbar-right">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" name="movieSelect" class="form-control" placeholder="Search">
                             <div class="input-group-btn">
-                                <button class="btn btn-default">
+                                <button type="submit" name="submit" class="btn btn-default">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </div>
@@ -87,15 +104,7 @@
       </thead>
       <tbody>
       <?php
-      $movies = displayMovies(); 
-      foreach($movies as $movies){
-       echo "<tr>";
-          echo"<td>".''.$movies['movieName'].''."</td>"; 
-          echo"<td>".''.$movies['movieGenre'].''."</td>"; 
-          echo"<td>".''.$movies['movieYear'].''."</td>"; 
-          echo"<td> <a href='html_images.asp'>Preview</a> </td>"; 
-        echo"</tr>"; 
-      }
+      displayMovies(); 
       ?>
       </tbody>
       </table>
