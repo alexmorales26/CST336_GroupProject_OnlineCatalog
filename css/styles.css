@@ -41,7 +41,7 @@ body {
     color:black;
     vertical-align: middle;
 }
-table, th, td,tr {
+#checkoutTable {
     border: 2px solid black;
     text-align: center !important;
     font-size: 1.2em;

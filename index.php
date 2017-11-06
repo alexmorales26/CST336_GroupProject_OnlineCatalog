@@ -1,5 +1,10 @@
 <?php
+<<<<<<< HEAD
 
+=======
+    session_start();
+    //$_SESSION['Movie'];
+>>>>>>> c22349b48bfd0db510e975536df2346f86dc7df8
     include 'dbCon.php';
     $conn = getDatabaseConnection();
    
@@ -33,8 +38,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+<<<<<<< HEAD
                     <a class="navbar-brand" href="index.php">Movie Database</a>
                 </div>
+=======
+>>>>>>> c22349b48bfd0db510e975536df2346f86dc7df8
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php">Home</a></li>
@@ -59,7 +67,11 @@
                                 <li><a href="#">Indie</a></li>
                             </ul>
                         </li>
+<<<<<<< HEAD
                         <li><a href="#">Checkout</a></li>
+=======
+                        <li><a href="checkout.php">Checkout</a></li>
+>>>>>>> c22349b48bfd0db510e975536df2346f86dc7df8
                         <li><a href="#">Random</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
@@ -92,6 +104,10 @@
       //   echo "<br>"; 
       // }
     ?>
+<<<<<<< HEAD
+=======
+    <script src="js/javafunctions.js"></script>
+>>>>>>> c22349b48bfd0db510e975536df2346f86dc7df8
   <div class="container">
     <table class="table table-striped">
       <thead>
