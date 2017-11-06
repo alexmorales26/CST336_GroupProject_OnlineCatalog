@@ -1,10 +1,6 @@
 <?php
-<<<<<<< HEAD
     session_start();
     //$_SESSION['Movie'];
-=======
-
->>>>>>> 2902c7d1b4a0fd9ccd4464e9cfc1807d53e5d472
     include 'dbCon.php';
     $conn = getDatabaseConnection();
     include 'inc/functions.php';
@@ -38,18 +34,6 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-<<<<<<< HEAD
-                    <a class="navbar-brand" href="#">Movies</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Popular</a></li>
-                        <li><a href="#">Genre</a></li>
-                        <li><a href="checkout.php">Checkout</a></li>
-=======
-                    <a class="navbar-brand" href="index.php">Movie Database</a>
-                </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.php">Home</a></li>
@@ -74,8 +58,7 @@
                                 <li><a href="#">Indie</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Checkout</a></li>
->>>>>>> 2902c7d1b4a0fd9ccd4464e9cfc1807d53e5d472
+                        <li><a href="checkout.php">Checkout</a></li>
                         <li><a href="#">Random</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
@@ -108,9 +91,7 @@
       //   echo "<br>"; 
       // }
     ?>
-<<<<<<< HEAD
     <script src="js/javafunctions.js"></script>
-=======
   <div class="container">
     <table class="table table-striped">
       <thead>
@@ -128,6 +109,5 @@
       </tbody>
       </table>
   </div>
->>>>>>> 2902c7d1b4a0fd9ccd4464e9cfc1807d53e5d472
   </body>
 </html>
