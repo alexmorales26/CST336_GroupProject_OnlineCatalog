@@ -2,7 +2,8 @@
     include 'dbCon.php';
     include 'inc/functions.php';
     $conn = getDatabaseConnection();
-    function replaceAll($text) { 
+    function replaceAll($text) 
+{ 
     $text = strtolower(htmlentities($text)); 
     $text = str_replace(get_html_translation_table(), "-", $text);
     $text = str_replace(" ", "-", $text);
@@ -49,7 +50,7 @@
                                 <li><a href="#">Crime</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Checkout</a></li>
+                        <li><a href="checkout.php">Checkout</a></li>
                         <li><a href="#">Random</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
@@ -76,18 +77,20 @@
         </nav>
 
     <?php
-        $something="The simpsons movie";
-        $somethingelse=replaceAll($something);
+      $something="fences";
+      $somethingelse=replaceAll($something);
       $trends=movieInfo($somethingelse);
       $title=trending($somethingelse);
       $overView=overView($somethingelse);
       
       for ($i = 0; $i < 1; $i++) 
       {
+          echo"<strong>" . $title[$i] . "</strong>";
+          echo "<br>";
           echo "<img src='$trends[$i]' width='200'>";
           echo "<br>" . "<br>";
-          echo $title[$i];
-          echo "<br>";
+          
+          
           echo $overView[$i];
         
       }

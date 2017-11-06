@@ -216,5 +216,11 @@ function overView($something)
         
         return $imageURLs;
 }
+function insertToShopCart($movie)
+{
+     global $conn;
+    $sql = "INSERT INTO db_checkout FROM `db_movie` WHERE 1 ";
+        
+}
     
 ?>
