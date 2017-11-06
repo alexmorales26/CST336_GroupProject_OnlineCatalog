@@ -2,17 +2,7 @@
     include 'dbCon.php';
     include 'inc/functions.php';
     $conn = getDatabaseConnection();
-    function replaceAll($text) 
-{ 
-    $text = strtolower(htmlentities($text)); 
-    $text = str_replace(get_html_translation_table(), "-", $text);
-    $text = str_replace(" ", "-", $text);
-    $text = preg_replace("/[-]+/i", "-", $text);
-    return $text;
-}
     
-    
-  
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,7 +30,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="index.php">Home</a></li>
                         <li><a href="Popularity.php">Popular</a></li>
                         <li><a href="#">Genre</a></li>
                         <li class="dropdown">

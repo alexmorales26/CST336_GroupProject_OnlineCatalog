@@ -108,6 +108,8 @@
             echo"<td>".''.$movies['movieYear'].''."</td>"; 
             echo"<td>";
             $name = replaceAll($movies['movieName']); 
+            $pic = movieInfo($name);
+            $info = overView($name);
             echo "<div class='container2' >";
             echo "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#".''.$name.''."'>Open Modal</button>";
             
@@ -117,10 +119,11 @@
                   echo "<div class='modal-content'>";
                     echo "<div class='modal-header'>";
                       echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
-                      echo $movies['movieName'];
+                      echo "<h3>".''.$movies['movieName'].''."</h3>";
                     echo "</div>";
                     echo "<div class='modal-body'>";
-                      echo "<p>".''.$movies['movieName'].''."</p>";
+                      echo "<p><img src='".''.$pic[0].''."' width='200'></p>";
+                      echo "<p>".''.$info[0].''."</p>";
                     echo "</div>";
                     echo "<div class='modal-footer'>";
                       echo "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
@@ -223,7 +226,7 @@ function insertToShopCart($movie)
         
 }
     
-    function replaceAll($text) 
+function replaceAll($text) 
     { 
         $text = strtolower(htmlentities($text)); 
         $text = str_replace(get_html_translation_table(), "-", $text);
