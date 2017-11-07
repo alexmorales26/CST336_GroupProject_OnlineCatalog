@@ -128,7 +128,6 @@ function AddToCart($item){
             $sql .= " ORDER BY movieName DESC";
         }
         
-        $sql .= " LIMIT 20";
                 
         $statement = $conn->prepare($sql);
         $statement->execute($namedParamaters);
