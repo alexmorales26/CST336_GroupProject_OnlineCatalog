@@ -1,4 +1,5 @@
 <?php
+    // Popularity page
     include 'dbCon.php';
     include 'inc/functions.php';
     $conn = getDatabaseConnection();

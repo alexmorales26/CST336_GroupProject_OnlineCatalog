@@ -1,4 +1,5 @@
 <?php
+// Checkout page
 session_start();
 include'dbCon.php';
     function deleteItem(){

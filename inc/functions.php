@@ -1,4 +1,5 @@
 <?php
+    // Functions page
      session_start();
     function test($interest) 
         {

@@ -1,4 +1,5 @@
 <?php
+    // Index page
     session_start();
     //$_SESSION['Movie'];
     include 'dbCon.php';
