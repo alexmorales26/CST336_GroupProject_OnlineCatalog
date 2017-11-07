@@ -123,8 +123,6 @@ function AddToCart($item){
                     echo "<div class='modal-header'>";
                       echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
                       echo "<h3>".''.$movies['movieName'].''."</h3>";
-                      echo "<h4 class='modal-title'> ".$movies['movieName']."</h4>";
-                      echo $movies['movieName'];
                     echo "</div>";
                     echo "<div class='modal-body'>";
                       echo "<p><img src='".''.$pic[0].''."' width='200'></p>";
