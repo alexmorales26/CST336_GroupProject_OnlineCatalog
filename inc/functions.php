@@ -92,11 +92,39 @@ function AddToCart($item){
         global $conn;
         $sql = "SELECT * FROM `db_movie` WHERE 1 ";
         
+        $namedParamaters = array();
+        
         if (isset($_GET['submit'])) {
-            $namedParamaters = array();
             
-            $namedParamaters[':movieName'] = $_GET['movieSelect'];
-            $sql .= ' AND movieName = :movieName';
+            if (!empty($_GET['movieSelect'])) {
+                $namedParamaters[':movieName'] = $_GET['movieSelect'];
+                $sql .= ' AND movieName = :movieName';
+            }
+            
+            if (!empty($_GET['genre'])) {
+                $namedParamaters[':genre'] = $_GET['genre'];
+                $sql .= " AND movieGenre like '%" . $_GET['genre'] . "%'";
+            }
+        }
+        
+        if (isset($_GET['random'])){
+            $namedParamaters[':random'] = rand(1,40);
+            $sql .= " AND movieId = :random";
+        }
+        if (isset($_GET['length'])) {
+            $sql .= " ORDER BY movieLength";
+        }
+        if (isset($_GET['newest'])) {
+            $sql .= " ORDER BY movieYear DESC";
+        }
+        if (isset($_GET['oldest'])) {
+            $sql .= " ORDER BY movieYear ASC";
+        }
+        if (isset($_GET['a-z'])) {
+            $sql .= " ORDER BY movieName ASC";
+        }
+        if (isset($_GET['z-a'])) {
+            $sql .= " ORDER BY movieName DESC";
         }
                 
         $statement = $conn->prepare($sql);
