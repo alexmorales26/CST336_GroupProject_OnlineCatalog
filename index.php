@@ -112,6 +112,7 @@
           <th>Movie Name</th>
           <th>Genre</th>
           <th>Year</th>
+          <th>Length</th>
           <th>Info</th>
         </tr>
       </thead>

@@ -136,6 +136,7 @@ function AddToCart($item){
             echo"<td>".''.$movies['movieName'].''."</td>"; 
             echo"<td>".''.$movies['movieGenre'].''."</td>"; 
             echo"<td>".''.$movies['movieYear'].''."</td>"; 
+            echo"<td>".''.$movies['movieLength'].''."</td>"; 
             echo"<td>";
             $name = replaceAll($movies['movieName']); 
             $pic = movieInfo($name);
