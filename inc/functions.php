@@ -144,7 +144,7 @@ function AddToCart($item){
             echo "<div class='container2' >";
             echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
             echo " ";
-          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart($name)'>Add to Cart</button>";
+          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart(".''.$movies['movieName'].''.")'>Add to Cart</button>";
             
               echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
                 echo "<div class='modal-dialog'>";
