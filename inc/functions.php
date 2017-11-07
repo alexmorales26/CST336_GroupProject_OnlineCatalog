@@ -265,5 +265,42 @@ function replaceAll($text)
         $text = preg_replace("/[-]+/i", "-", $text);
         return $text;
     }
-    
+    function topRated() {
+        global $conn;
+        $sql = "SELECT * FROM `db_movie` limit 10 ";
+        
+        if (isset($_GET['submit'])) {
+            $namedParamaters = array();
+            
+            $namedParamaters[':movieName'] = $_GET['movieSelect'];
+            $sql .= ' AND movieName = :movieName';
+        }
+                
+        $statement = $conn->prepare($sql);
+        $statement->execute($namedParamaters);
+        $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
+        //This will return an array of movie info
+        foreach($movies as $movies){
+        
+
+            $name = replaceAll($movies['movieName']); 
+            $pic = movieInfo($name);
+            $info = overView($name);
+            $name1=trending($name);
+           for($i=0;$i<1;$i++)
+           {
+                echo "<strong>" . $name1[$i] . "</strong>";
+                echo "<br>";
+                echo "<img src='$pic[$i]' width='200'>";
+                echo "<br>";
+                echo "<br>";
+                echo "<br>";
+               
+          
+          
+          
+        
+           }
+        }
+    }
 ?>

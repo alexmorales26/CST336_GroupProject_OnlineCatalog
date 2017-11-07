@@ -94,23 +94,7 @@
         </nav>
 
     <?php
-      $something="fences";
-      $somethingelse=replaceAll($something);
-      $trends=movieInfo($somethingelse);
-      $title=trending($somethingelse);
-      $overView=overView($somethingelse);
-      
-      for ($i = 0; $i < 1; $i++) 
-      {
-          echo"<strong>" . $title[$i] . "</strong>";
-          echo "<br>";
-          echo "<img src='$trends[$i]' width='200'>";
-          echo "<br>" . "<br>";
-          
-          
-          echo $overView[$i];
-        
-      }
+    topRated();
     ?>
   </body>
 </html>
