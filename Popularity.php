@@ -2,10 +2,8 @@
     include 'dbCon.php';
     include 'inc/functions.php';
     $conn = getDatabaseConnection();
-   
+
     
-    
-  
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,8 +31,13 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
+
                         <li><a href="index.php">Home</a></li>
                         <li class="active"><a href="Popularity.php">Popular</a></li>
+
+                        <li class="active"><a href="index.php">Home</a></li>
+                        <li><a href="Popularity.php">Popular</a></li>
+
                         <li><a href="#">Genre</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
@@ -70,7 +73,7 @@
         </nav>
 
     <?php
-      $something="jumanji";
+      $something="Saving private ryan";
       $somethingelse=replaceAll($something);
       $trends=movieInfo($somethingelse);
       $overView=overView($somethingelse);
