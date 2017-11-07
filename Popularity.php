@@ -73,7 +73,8 @@
         </nav>
 
     <?php
-      $something="Saving private ryan";
+    /*testing apis only*/
+      $something="forest gump";
       $somethingelse=replaceAll($something);
       $trends=movieInfo($somethingelse);
       $overView=overView($somethingelse);

@@ -1,5 +1,5 @@
 <?php
-
+     session_start();
     function test($interest) 
         {
                 
@@ -85,7 +85,9 @@
         return $imageURLs;
         
     }
-
+function AddToCart($item){
+  $_SESSION['name']=$item;
+}
     function displayMovies() {
         global $conn;
         $sql = "SELECT * FROM `db_movie` WHERE 1 ";
@@ -107,16 +109,17 @@
             echo"<td>".''.$movies['movieGenre'].''."</td>"; 
             echo"<td>".''.$movies['movieYear'].''."</td>"; 
             echo"<td>";
-           
+
             $name = replaceAll($movies['movieName']); 
             $pic = movieInfo($name);
             $info = overView($name);
             echo "<div class='container2' >";
-            echo "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#".''.$name.''."'>Open Modal</button>";
+            echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
+            echo " ";
+          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart($name)'>Add to Cart</button>";
             
               echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
                 echo "<div class='modal-dialog'>";
-                
                   echo "<div class='modal-content'>";
                     echo "<div class='modal-header'>";
                       echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
@@ -132,10 +135,8 @@
                       echo "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
                     echo "</div>";
                   echo "</div>";
-                  
                 echo "</div>";
               echo "</div>";
-  
             echo "</div>";
             echo"</td>"; 
             echo"</tr>";
@@ -237,5 +238,46 @@ function replaceAll($text)
         $text = preg_replace("/[-]+/i", "-", $text);
         return $text;
     }
+    function over($something) 
+    {
+            
+            $curl = curl_init();
+            $key=getenv('movie_key');
+            
+            curl_setopt_array($curl, array(
+        
+            
+              CURLOPT_URL => "https://api.themoviedb.org/3/search/movie?api_key=8e56967b0a4b849899773bc9ad998665&query=$something&page=1&include_adult=false",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "GET",
+                CURLOPT_POSTFIELDS => array(
+        "cache-control: no-cache"
+      ),
+            ));
+           $jsonData = curl_exec($curl);
+    $data = json_decode($jsonData, true); //true makes it an array!
+     $imageURLs = array();
+     
+     
+     for ($i = 0; $i < 1; $i++) 
+        {
+                $imageURLs[]=$data['results'][$i];
+                
+                 //$config['images']['base_url']
+                 //$imageURLs[]=$data['images'][$i]['base_url'];
+                 //$imageURLs[]+=$data['images'][$i]['secure_base_url'];
+                 //$imageURLs[]+=$data['images'][$i]['backdrop_sizes'];
+                 
+               
+               // echo $imageURLs[$i];
+        }
+ 
+        
+        return $imageURLs;
+}
     
 ?>
