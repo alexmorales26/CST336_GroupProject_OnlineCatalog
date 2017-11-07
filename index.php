@@ -29,7 +29,7 @@
     </script>
   </head>
   <body>
-    <h1><a href="index.php" id="titleMovie"> MovieNator </a></h1>
+    <h1><a href="index.php" id="titleMovie"> BLOCKBUSTER 2.0  </a></h1>
         
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container-fluid">
