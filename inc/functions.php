@@ -1,5 +1,5 @@
 <?php
-
+     session_start();
     function test($interest) 
         {
                 
@@ -85,7 +85,9 @@
         return $imageURLs;
         
     }
-
+function AddToCart($item){
+  $_SESSION['name']=$item;
+}
     function displayMovies() {
         global $conn;
         $sql = "SELECT * FROM `db_movie` WHERE 1 ";
@@ -107,29 +109,19 @@
             echo"<td>".''.$movies['movieGenre'].''."</td>"; 
             echo"<td>".''.$movies['movieYear'].''."</td>"; 
             echo"<td>";
-<<<<<<< HEAD
-            echo "<div class='container2'>";
-              echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#myModal'>Preview</button>";
-              echo " ";
-              echo "<button type='button' class='btn btn-success btn-sm'>Add to Cart</button>";
-              echo "<div class='modal fade' id='myModal' role='dialog'>";
-=======
             $name = replaceAll($movies['movieName']); 
             echo "<div class='container2' >";
-            echo "<button type='button' class='btn btn-info' data-toggle='modal' data-target='#".''.$name.''."'>Open Modal</button>";
+            echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
+            echo " ";
+          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart($name)'>Add to Cart</button>";
             
               echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
->>>>>>> a0e588b52c8cddae04cf57683fa2f00bedfe5628
                 echo "<div class='modal-dialog'>";
-                
                   echo "<div class='modal-content'>";
                     echo "<div class='modal-header'>";
                       echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
-<<<<<<< HEAD
                       echo "<h4 class='modal-title'> ".$movies['movieName']."</h4>";
-=======
                       echo $movies['movieName'];
->>>>>>> a0e588b52c8cddae04cf57683fa2f00bedfe5628
                     echo "</div>";
                     echo "<div class='modal-body'>";
                       echo "<p>".''.$movies['movieName'].''."</p>";
@@ -138,10 +130,8 @@
                       echo "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
                     echo "</div>";
                   echo "</div>";
-                  
                 echo "</div>";
               echo "</div>";
-  
             echo "</div>";
             echo"</td>"; 
             echo"</tr>";
