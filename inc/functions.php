@@ -103,8 +103,8 @@ function AddToCart($item){
             }
             
             if (!empty($_GET['genre'])) {
-                $namedParamaters[':genre'] = $_GET['genre'];
-                $sql .= " AND movieGenre like '%" . $_GET['genre'] . "%'";
+                $namedParamaters[':genre'] = "%" . $_GET['genre'] . "%";
+                $sql .= " AND movieGenre like :genre";
             }
         }
         
@@ -127,6 +127,8 @@ function AddToCart($item){
         if (isset($_GET['z-a'])) {
             $sql .= " ORDER BY movieName DESC";
         }
+        
+        $sql .= " LIMIT 20";
                 
         $statement = $conn->prepare($sql);
         $statement->execute($namedParamaters);
