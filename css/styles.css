@@ -36,6 +36,14 @@ body {
 .dropdown-menu > li > a:hover {
     color: white !important;
 }
+
+.btn-link {
+    text-decoration: none;
+}
+#titleMovie {
+    text-decoration: none;
+    color: black;
+}
 #checkOutTitle{
     text-align: center ;
     color:black;
