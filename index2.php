@@ -118,12 +118,12 @@
         </tr>
       </thead>
       <tbody>
-      <?=displayMovies()?>
+      <?=displayMovies2()?>
       </tbody>
       </table>
       
        <ul class="pager">
-          <li><a href="index2.php">Next Page</a></li>
+          <li><a href="index.php">Previous Page</a></li>
        </ul> 
   </div>
   </body>
