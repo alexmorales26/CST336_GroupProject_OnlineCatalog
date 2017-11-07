@@ -3,6 +3,7 @@
     include 'dbCon.php';
     include 'inc/functions.php';
     $conn = getDatabaseConnection();
+
     
 ?>
 <!DOCTYPE html>
@@ -42,7 +43,25 @@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
+
+
+                       
+
+                        <li class="active"><a href="index.php">Home</a></li>
+                        <li><a href="Popularity.php">Popular</a></li>
+
+                        <li><a href="#">Genre</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Crime</a></li>
+                            </ul>
+                        </li>
+
+
                         <li class="active"><a href="Popularity.php">Popular</a></li>
+
                         <li><a href="checkout.php">Checkout</a></li>
                         <li><form class="navbar-form" action="index.php">
                             <button type="submit" name="random" class="btn btn-link">Random</button>
@@ -94,23 +113,8 @@
         </nav>
 
     <?php
-      $something="fences";
-      $somethingelse=replaceAll($something);
-      $trends=movieInfo($somethingelse);
-      $title=trending($somethingelse);
-      $overView=overView($somethingelse);
-      
-      for ($i = 0; $i < 1; $i++) 
-      {
-          echo"<strong>" . $title[$i] . "</strong>";
-          echo "<br>";
-          echo "<img src='$trends[$i]' width='200'>";
-          echo "<br>" . "<br>";
-          
-          
-          echo $overView[$i];
-        
-      }
+    /*testing apis only*/
+     topRated();
     ?>
   </body>
 </html>
