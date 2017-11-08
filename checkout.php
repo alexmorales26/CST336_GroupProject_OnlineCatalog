@@ -87,6 +87,7 @@ $username = $_GET['users'];
         echo "</tbody>";
         echo "</table>";
         echo "</div>";
+        echo "<h6>*Last updated 11.7.2017 @ 11:49pm</h6>";
         
     }
     
@@ -111,19 +112,18 @@ $username = $_GET['users'];
         <h1 class="display-4" id="checkOutTitle"> Shopping Cart </h1>
         <hr />
         <nav class="navbar navbar-light">
-            <div class="container-fluid">
+            <form>
                 <a class="btn btn-success btn-lg" href="index.php" role="button"> Go Back </a>
                 <input class="btn btn-primary btn-lg" type="submit" value="Purchase!" id="checkoutBtn">
-                <form id="navbar-form">
-                    <input type="submit" name="history" class="btn btn-default btn-lg" value="History">
-                </form>
-                <form>
-                    <select name="users">
-                        <option value="">Users</option>
-                        <?=getUsers()?>
-                    </select>
-                </form>
-            </div>
+                <input type="submit" name="history" class="btn btn-default btn-lg" value="History">
+            </form>
+            <br />
+            <form>
+                <select name="users">
+                    <option value="">Users</option>
+                    <?=getUsers()?>
+                </select>
+            </form>
         </nav>
         <div class="container" id="checkoutCartTable">
             <table class="table table-hover">

@@ -51,6 +51,10 @@ body {
     color: #C7C7CD !important;
 }
 
+ul {
+    display: inline;
+    list-style: none;
+}
 #titleMovie {
     text-decoration: none !important;
     color: black;
