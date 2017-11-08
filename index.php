@@ -109,11 +109,10 @@ if(isset($_GET['movieId'])){
         </tr>
       </thead>
       <tbody>
-      <?=displayMovies2()?>
+      <?=displayMovies()?>
       </tbody>
       </table>
-          <li><a href="index2.php">Next Page</a></li>
-       </ul> 
+
   </div>
       <script src="js/javaFunctions.js"></script>
   </body>

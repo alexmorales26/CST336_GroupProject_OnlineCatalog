@@ -89,90 +89,10 @@
         return $imageURLs;
         
     }
+
     function displayMovies() {
         global $conn;
-        $sql = "SELECT * FROM `db_movie` LIMIT 0,20 ";
-        
-        $namedParamaters = array();
-        
-        if (isset($_GET['submit'])) {
-            
-            if (!empty($_GET['movieSelect'])) {
-                $namedParamaters[':movieName'] = $_GET['movieSelect'];
-                $sql .= ' AND movieName = :movieName';
-            }
-            
-            if (!empty($_GET['genre'])) {
-                $namedParamaters[':genre'] = "%" . $_GET['genre'] . "%";
-                $sql .= " AND movieGenre like :genre";
-            }
-        }
-        
-        if (isset($_GET['random'])){
-            $namedParamaters[':random'] = rand(1,40);
-            $sql .= " AND movieId = :random";
-        }
-        if (isset($_GET['length'])) {
-            $sql .= " ORDER BY movieLength";
-        }
-        if (isset($_GET['newest'])) {
-            $sql .= " ORDER BY movieYear DESC";
-        }
-        if (isset($_GET['oldest'])) {
-            $sql .= " ORDER BY movieYear ASC";
-        }
-        if (isset($_GET['a-z'])) {
-            $sql .= " ORDER BY movieName ASC";
-        }
-        if (isset($_GET['z-a'])) {
-            $sql .= " ORDER BY movieName DESC";
-        }
-        
-                
-        $statement = $conn->prepare($sql);
-        $statement->execute($namedParamaters);
-        $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
-        //This will return an array of movie info
-        foreach($movies as $movies){
-            echo "<tr>";
-            echo"<td>".''.$movies['movieName'].''."</td>"; 
-            echo"<td>".''.$movies['movieGenre'].''."</td>"; 
-            echo"<td>".''.$movies['movieYear'].''."</td>"; 
-            echo"<td>".''.$movies['movieLength'].''."</td>"; 
-            echo"<td>";
-            $name = replaceAll($movies['movieName']); 
-            $pic = movieInfo($name);
-            $info = overView($name);
-            echo "<div class='container2' >";
-            echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
-            echo " ";
-          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart(".''.$movies['movieName'].''.")'>Add to Cart</button>";
-            
-              echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
-                echo "<div class='modal-dialog'>";
-                  echo "<div class='modal-content'>";
-                    echo "<div class='modal-header'>";
-                      echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
-                      echo "<h3>".''.$movies['movieName'].''."</h3>";
-                    echo "</div>";
-                    echo "<div class='modal-body'>";
-                      echo "<p style= 'text-align:center' ><img src='".''.$pic[0].''."' width='200'></p>";
-                      echo "<p>".''.$info[0].''."</p>";
-                    echo "</div>";
-                    echo "<div class='modal-footer'>";
-                      echo "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
-                    echo "</div>";
-                  echo "</div>";
-                echo "</div>";
-              echo "</div>";
-            echo "</div>";
-            echo"</td>"; 
-            echo"</tr>";
-        }
-    }
-    function displayMovies2() {
-        global $conn;
-        $sql = "SELECT * FROM `db_movie` LIMIT 21,40";
+        $sql = "SELECT * FROM `db_movie` WHERE 1";
         
         $namedParamaters = array();
         
