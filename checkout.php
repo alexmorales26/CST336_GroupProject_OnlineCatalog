@@ -1,4 +1,20 @@
 <?php
+  include 'dbCon.php';
+    $conn = getDatabaseConnection();
+    
+    function getUsers() {
+        global $conn;
+        
+        $sql = "SELECT * FROM `db_user` WHERE 1 ";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach($users as $user) {
+            echo "<option>" . $user['firstName'] . " " . $user['lastName'] . "</option>";
+        }
+    }
 // Checkout page
 session_start();
 $movieDisplay= array();
@@ -8,7 +24,7 @@ if(isset($_GET['movieId'])){
     $index=$_SESSION['movieId'];
     array_push($movieDisplay,$_SESSION['movieName'][$index],$_SESSION['movieGenre'][$index],$_SESSION['movieYear'][$index]);
     array_push($All,$movieDisplay);
-    print_r($All);
+    //print_r($All);
 }
 //print_r($_SESSION);
 //print($_SESSION['movieId']);
@@ -18,9 +34,7 @@ if(empty($_SESSION)){
 function refreshCart()
 {
     global $All;
-  // for( $x=0; $x < count($movieDisplay);$x++){
        foreach((array)$All as $movie){
-  // $i = $_SESSION['movieId'];
      echo "<tbody>";
     echo "<tr>";
         echo " <td>".''.$movie[0].''."</td>";
@@ -34,15 +48,21 @@ function refreshCart()
          echo " </tr>";
       echo "</tr>";
        echo "</tbody>";
-     //  }
     }
 }
-   
+
+$username = $_GET['users'];
     
 ?>
 <!DOCTYPE html>
 <html>
     <head>
+        <script>
+            function confirmCheckOut(first)
+            {
+                return confirm(first+" do you wish to checkout ?");
+            }
+        </script>
     <title>Checkout Cart</title>
     <style>
         @import url("css/styles.css");
@@ -56,7 +76,12 @@ function refreshCart()
  <nav class="navbar navbar-light">
  <a class="btn btn-success btn-lg" href="index.php" role="button"> Go Back </a>
  <input class="btn btn-primary btn-lg" type="submit" value="Purchase!" id="checkoutBtn">
- 
+   <form>
+            <select name="users">
+                <option value="">Users</option>
+                <?=getUsers()?>
+            </select>
+        </form>
 </nav>
 <div class="container" id="checkoutCartTable">
         <table class="table table-hover">
@@ -64,7 +89,7 @@ function refreshCart()
        <tr>
         <th class="col-xs-3"> Title</th>
         <th class="col-xs-3">Genre</th> 
-        <th class="col-xs-3">User</th>
+        <th class="col-xs-3">Year</th>
         <th class="col-xs-3">Update Cart</th>
         </thead>
         <!-- --> 

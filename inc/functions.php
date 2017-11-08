@@ -226,18 +226,14 @@
             $info = overView($name);
             echo "<div class='container2' >";
             echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
-            echo " ";
-<<<<<<< HEAD
+            //echo " ";
           echo "<form action='checkout.php'><input type='hidden' name='movieId' value='".$i."'>
-          <input type='submit'value='Add to Cart'
+          <input type='submit'value='Add To Cart'
           <button type='button'id='AddToCartBtn'class='btn btn-success btn-sm'</button></form>";
             $movieCollect[$i]=$movies['movieName'];
             $movieGenre[$i]=$movies['movieGenre'];
             $movieYear[$i]=$movies['movieYear'];
-=======
-          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart(".''.$movies['movieName'].''.")'>Add to Cart</button>";
-            
->>>>>>> 7bc87894838a2399bff8e56e1e557face0189ed4
+          //echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart(".''.$movies['movieName'].''.")'>Add to Cart</button>";
               echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
                 echo "<div class='modal-dialog'>";
                   echo "<div class='modal-content'>";
@@ -258,10 +254,7 @@
             echo "</div>";
             echo"</td>"; 
             echo"</tr>";
-<<<<<<< HEAD
             $i++;
-=======
->>>>>>> 7bc87894838a2399bff8e56e1e557face0189ed4
         }
         $_SESSION['movieName']=$movieCollect;
         $_SESSION['movieGenre']=$movieGenre;
