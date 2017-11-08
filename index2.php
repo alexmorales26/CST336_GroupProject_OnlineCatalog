@@ -1,15 +1,17 @@
 <?php
-    // Popularity page
+    // Index page
+    session_start();
+    //$_SESSION['Movie'];
     include 'dbCon.php';
-    include 'inc/functions.php';
     $conn = getDatabaseConnection();
-    
+    include 'inc/functions.php';
+
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title> BLOCKBUSTER 2.0 | Most Popular </title>
+    <title> BLOCKBUSTER 2.0 | Homepage </title>
     <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     -->
@@ -28,7 +30,7 @@
     </script>
   </head>
   <body>
-    <h1><a href="index.php" id="titleMovie"> BLOCKBUSTER 2.0 </a></h1>
+    <h1><a href="index.php" id="titleMovie"> BLOCKBUSTER 2.0  </a></h1>
         
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container-fluid">
@@ -38,20 +40,22 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-home"></span> Movie Database</a>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-home"></span> Movie Database</a></li>
+                    </ul>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="Popularity.php">Popular</a></li>
+                        <li><a href="Popularity.php">Popular</a></li>
                         <li><a href="checkout.php">Checkout</a></li>
                         <li><form class="navbar-form" action="index.php">
-                            <button type="submit" name="random" class="btn btn-link">Random</button>
-                        </form></li>
+                            <li><button type="submit" name="random" class="btn btn-link">Random</button></li>
+                        </form></li>               
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">More
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <form class="navbar-form" action="index.php">
+                                <form class="navbar-form">
                                     <li><button type="submit" name="length" class="btn btn-link">Length</button></li>
                                     <li><button type="submit" name="newest" class="btn btn-link">Newest</button></li>
                                     <li><button type="submit" name="oldest" class="btn btn-link">Oldest</button></li>
@@ -61,7 +65,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <form action="index.php" class="navbar-form navbar-right">
+                    <form class="navbar-form navbar-right">
                         <div class="input-group my-group">
                             <input type="text" name="movieSelect" class="form-control" placeholder="Search Movie">
                             <span class="input-group-btn" style="width:0px;"></span>
@@ -83,7 +87,7 @@
                                 <option value="Indie">Indie</option>
                             </select>
                             <span class="input-group-btn">
-                                <button type="submit" name="submit" class="btn btn-default my-group-button">
+                                <button type="submit" name="submit" class="btn btn-default my-group-button ">
                                     <i class="glyphicon glyphicon-search"></i>
                                 </button>
                             </span>
@@ -92,9 +96,35 @@
                 </div>
             </div>
         </nav>
+        
 
     <?php
-    topRated();
+      //$movies = displayMovies(); 
+      // foreach($movies as $movies){
+      //   echo $movies['movieId']. ' ' .$movies['movieName']. ' ' .$movies['movieGenre']; 
+      //   echo "<br>"; 
+      // }
     ?>
+    <script src="js/javafunctions.js"></script>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Movie Name</th>
+          <th>Genre</th>
+          <th>Year</th>
+          <th>Length</th>
+          <th>Info</th>
+        </tr>
+      </thead>
+      <tbody>
+      <?=displayMovies2()?>
+      </tbody>
+      </table>
+      
+       <ul class="pager">
+          <li><a href="index.php">Previous Page</a></li>
+       </ul> 
+  </div>
   </body>
 </html>

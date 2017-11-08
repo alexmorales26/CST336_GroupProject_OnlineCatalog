@@ -37,11 +37,21 @@ body {
     color: white !important;
 }
 
-.btn-link {
-    text-decoration: none;
+.btn-link:hover {
+    text-decoration: none !important;
+}
+
+.form-control, .btn-default {
+    background-color: #444444 !important;
+    border-color: #222 !important;
+    color: #C7C7CD  !important;
+}
+
+::-webkit-input-placeholder {
+    color: #C7C7CD !important;
 }
 #titleMovie {
-    text-decoration: none;
+    text-decoration: none !important;
     color: black;
 }
 #checkOutTitle{

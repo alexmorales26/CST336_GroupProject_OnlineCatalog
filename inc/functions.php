@@ -1,4 +1,5 @@
 <?php
+    // Func
      session_start();
      $movieCollect = array();
      $movieGenre = array();
@@ -90,7 +91,88 @@
     }
     function displayMovies() {
         global $conn;
-        $sql = "SELECT * FROM `db_movie` WHERE 1 ";
+        $sql = "SELECT * FROM `db_movie` LIMIT 0,20 ";
+        
+        $namedParamaters = array();
+        
+        if (isset($_GET['submit'])) {
+            
+            if (!empty($_GET['movieSelect'])) {
+                $namedParamaters[':movieName'] = $_GET['movieSelect'];
+                $sql .= ' AND movieName = :movieName';
+            }
+            
+            if (!empty($_GET['genre'])) {
+                $namedParamaters[':genre'] = "%" . $_GET['genre'] . "%";
+                $sql .= " AND movieGenre like :genre";
+            }
+        }
+        
+        if (isset($_GET['random'])){
+            $namedParamaters[':random'] = rand(1,40);
+            $sql .= " AND movieId = :random";
+        }
+        if (isset($_GET['length'])) {
+            $sql .= " ORDER BY movieLength";
+        }
+        if (isset($_GET['newest'])) {
+            $sql .= " ORDER BY movieYear DESC";
+        }
+        if (isset($_GET['oldest'])) {
+            $sql .= " ORDER BY movieYear ASC";
+        }
+        if (isset($_GET['a-z'])) {
+            $sql .= " ORDER BY movieName ASC";
+        }
+        if (isset($_GET['z-a'])) {
+            $sql .= " ORDER BY movieName DESC";
+        }
+        
+                
+        $statement = $conn->prepare($sql);
+        $statement->execute($namedParamaters);
+        $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
+        //This will return an array of movie info
+        foreach($movies as $movies){
+            echo "<tr>";
+            echo"<td>".''.$movies['movieName'].''."</td>"; 
+            echo"<td>".''.$movies['movieGenre'].''."</td>"; 
+            echo"<td>".''.$movies['movieYear'].''."</td>"; 
+            echo"<td>".''.$movies['movieLength'].''."</td>"; 
+            echo"<td>";
+            $name = replaceAll($movies['movieName']); 
+            $pic = movieInfo($name);
+            $info = overView($name);
+            echo "<div class='container2' >";
+            echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
+            echo " ";
+          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart(".''.$movies['movieName'].''.")'>Add to Cart</button>";
+            
+              echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
+                echo "<div class='modal-dialog'>";
+                  echo "<div class='modal-content'>";
+                    echo "<div class='modal-header'>";
+                      echo "<button type='button' class='close' data-dismiss='modal'>&times;</button>";
+                      echo "<h3>".''.$movies['movieName'].''."</h3>";
+                    echo "</div>";
+                    echo "<div class='modal-body'>";
+                      echo "<p style= 'text-align:center' ><img src='".''.$pic[0].''."' width='200'></p>";
+                      echo "<p>".''.$info[0].''."</p>";
+                    echo "</div>";
+                    echo "<div class='modal-footer'>";
+                      echo "<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
+                    echo "</div>";
+                  echo "</div>";
+                echo "</div>";
+              echo "</div>";
+            echo "</div>";
+            echo"</td>"; 
+            echo"</tr>";
+        }
+    }
+    function displayMovies2() {
+        global $conn;
+        $sql = "SELECT * FROM `db_movie` LIMIT 21,40";
         
         $namedParamaters = array();
         
@@ -145,12 +227,17 @@
             echo "<div class='container2' >";
             echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
             echo " ";
+<<<<<<< HEAD
           echo "<form action='checkout.php'><input type='hidden' name='movieId' value='".$i."'>
           <input type='submit'value='Add to Cart'
           <button type='button'id='AddToCartBtn'class='btn btn-success btn-sm'</button></form>";
             $movieCollect[$i]=$movies['movieName'];
             $movieGenre[$i]=$movies['movieGenre'];
             $movieYear[$i]=$movies['movieYear'];
+=======
+          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart(".''.$movies['movieName'].''.")'>Add to Cart</button>";
+            
+>>>>>>> 7bc87894838a2399bff8e56e1e557face0189ed4
               echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
                 echo "<div class='modal-dialog'>";
                   echo "<div class='modal-content'>";
@@ -159,7 +246,7 @@
                       echo "<h3>".''.$movies['movieName'].''."</h3>";
                     echo "</div>";
                     echo "<div class='modal-body'>";
-                      echo "<p><img src='".''.$pic[0].''."' width='200'></p>";
+                      echo "<p style= 'text-align:center'><img src='".''.$pic[0].''."' width='200' ></p>";
                       echo "<p>".''.$info[0].''."</p>";
                     echo "</div>";
                     echo "<div class='modal-footer'>";
@@ -171,7 +258,10 @@
             echo "</div>";
             echo"</td>"; 
             echo"</tr>";
+<<<<<<< HEAD
             $i++;
+=======
+>>>>>>> 7bc87894838a2399bff8e56e1e557face0189ed4
         }
         $_SESSION['movieName']=$movieCollect;
         $_SESSION['movieGenre']=$movieGenre;
@@ -257,5 +347,42 @@ function replaceAll($text)
         $text = preg_replace("/[-]+/i", "-", $text);
         return $text;
     }
-    
+    function topRated() {
+        global $conn;
+        $sql = "SELECT * FROM `db_movie` limit 10 ";
+        
+        if (isset($_GET['submit'])) {
+            $namedParamaters = array();
+            
+            $namedParamaters[':movieName'] = $_GET['movieSelect'];
+            $sql .= ' AND movieName = :movieName';
+        }
+                
+        $statement = $conn->prepare($sql);
+        $statement->execute($namedParamaters);
+        $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
+        //This will return an array of movie info
+        foreach($movies as $movies){
+        
+
+            $name = replaceAll($movies['movieName']); 
+            $pic = movieInfo($name);
+            $info = overView($name);
+            $name1=trending($name);
+           for($i=0;$i<1;$i++)
+           {
+                echo "<strong>" . $name1[$i] . "</strong>";
+                echo "<br>";
+                echo "<img src='$pic[$i]' width='200'>";
+                echo "<br>";
+                echo "<br>";
+                echo "<br>";
+               
+          
+          
+          
+        
+           }
+        }
+    }
 ?>

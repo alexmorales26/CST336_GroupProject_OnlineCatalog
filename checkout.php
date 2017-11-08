@@ -1,4 +1,5 @@
 <?php
+// Checkout page
 session_start();
 $movieDisplay= array();
 $All = array();
