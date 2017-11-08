@@ -1,15 +1,42 @@
 <?php
 session_start();
-include'dbCon.php';
-    function deleteItem(){
-    $conn=getDatabaseConnection();
-    $sql="DELETE FROM db_checkout WHERE checkoutId=".$_GET['checkoutId'];
-    
-     $stmt=$conn->prepare($sql);
-    $stmt->execute();
-        
-    header("Location:checkout.php");
+$movieDisplay= array();
+$All = array();
+if(isset($_GET['movieId'])){
+    $_SESSION['movieId']=$_GET['movieId'];
+    $index=$_SESSION['movieId'];
+    array_push($movieDisplay,$_SESSION['movieName'][$index],$_SESSION['movieGenre'][$index],$_SESSION['movieYear'][$index]);
+    array_push($All,$movieDisplay);
+    print_r($All);
+}
+//print_r($_SESSION);
+//print($_SESSION['movieId']);
+if(empty($_SESSION)){
+    echo"Empty Cart";
+}
+function refreshCart()
+{
+    global $All;
+  // for( $x=0; $x < count($movieDisplay);$x++){
+       foreach((array)$All as $movie){
+  // $i = $_SESSION['movieId'];
+     echo "<tbody>";
+    echo "<tr>";
+        echo " <td>".''.$movie[0].''."</td>";
+         echo"  <td>".''.$movie[1].''."</td>"; 
+        echo    "<td>".''.$movie[2].''."</td>";
+          echo " <td>";
+   echo " <div class='inline'> ";
+    echo"<a href='removeItem.php' class='btn btn-danger  btn-sm btn-block'role='button'>Remove Item</a>";
+           echo"  </div>";
+        echo    "</td>";
+         echo " </tr>";
+      echo "</tr>";
+       echo "</tbody>";
+     //  }
     }
+}
+   
     
 ?>
 <!DOCTYPE html>
@@ -28,6 +55,7 @@ include'dbCon.php';
  <nav class="navbar navbar-light">
  <a class="btn btn-success btn-lg" href="index.php" role="button"> Go Back </a>
  <input class="btn btn-primary btn-lg" type="submit" value="Purchase!" id="checkoutBtn">
+ 
 </nav>
 <div class="container" id="checkoutCartTable">
         <table class="table table-hover">
@@ -35,22 +63,11 @@ include'dbCon.php';
        <tr>
         <th class="col-xs-3"> Title</th>
         <th class="col-xs-3">Genre</th> 
-        <th class="col-xs-3">Duration</th>
+        <th class="col-xs-3">User</th>
         <th class="col-xs-3">Update Cart</th>
         </thead>
-        <tbody>
-            <tr>
-            <td>Jill</td>
-            <td>Smith</td> 
-            <td>50</td>
-            <td>
-            <div class="inline">
-                <a href="removeItem.php" class="btn btn-danger  btn-sm btn-block"role="button">Remove Item</a>
-             </div>
-            </td>
-          </tr>
-      </tr>
-      
+        <!-- --> 
+        <?=refreshCart()?>
     </table>
 </div>
 <script src="js/javaFunctions.js"></script>

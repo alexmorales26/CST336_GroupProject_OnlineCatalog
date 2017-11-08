@@ -1,7 +1,8 @@
 function confirmCheckOut()
 {
    if(confirm("Do you wish to check out ?")){
-       window.open("checkout.php");
+    //  location.href='removeItem.php';
+      window.open("removeItem.php");
    }
    else{
        return;

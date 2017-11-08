@@ -1,10 +1,11 @@
 <?php
     session_start();
-    //$_SESSION['Movie'];
     include 'dbCon.php';
     $conn = getDatabaseConnection();
     include 'inc/functions.php';
-
+if(isset($_GET['movieId'])){
+    $_SESSION['movieId']=$_GET['movieId'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -95,16 +96,6 @@
                 </div>
             </div>
         </nav>
-        
-
-    <?php
-      //$movies = displayMovies(); 
-      // foreach($movies as $movies){
-      //   echo $movies['movieId']. ' ' .$movies['movieName']. ' ' .$movies['movieGenre']; 
-      //   echo "<br>"; 
-      // }
-    ?>
-    <script src="js/javafunctions.js"></script>
   <div class="container">
     <table class="table table-striped">
       <thead>
@@ -123,5 +114,6 @@
       </tbody>
       </table>
   </div>
+      <script src="js/javaFunctions.js"></script>
   </body>
 </html>

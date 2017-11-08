@@ -1,5 +1,8 @@
 <?php
      session_start();
+     $movieCollect = array();
+     $movieGenre = array();
+     $movieYear = array();
     function test($interest) 
         {
                 
@@ -85,9 +88,6 @@
         return $imageURLs;
         
     }
-function AddToCart($item){
-  $_SESSION['name']=$item;
-}
     function displayMovies() {
         global $conn;
         $sql = "SELECT * FROM `db_movie` WHERE 1 ";
@@ -130,6 +130,7 @@ function AddToCart($item){
         $statement = $conn->prepare($sql);
         $statement->execute($namedParamaters);
         $movies = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $i=0;
         //This will return an array of movie info
         foreach($movies as $movies){
             echo "<tr>";
@@ -144,8 +145,12 @@ function AddToCart($item){
             echo "<div class='container2' >";
             echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
             echo " ";
-          echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart($name)'>Add to Cart</button>";
-            
+          echo "<form action='checkout.php'><input type='hidden' name='movieId' value='".$i."'>
+          <input type='submit'value='Add to Cart'
+          <button type='button'id='AddToCartBtn'class='btn btn-success btn-sm'</button></form>";
+            $movieCollect[$i]=$movies['movieName'];
+            $movieGenre[$i]=$movies['movieGenre'];
+            $movieYear[$i]=$movies['movieYear'];
               echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
                 echo "<div class='modal-dialog'>";
                   echo "<div class='modal-content'>";
@@ -166,8 +171,11 @@ function AddToCart($item){
             echo "</div>";
             echo"</td>"; 
             echo"</tr>";
-            
+            $i++;
         }
+        $_SESSION['movieName']=$movieCollect;
+        $_SESSION['movieGenre']=$movieGenre;
+        $_SESSION['movieYear']=$movieYear;
     }
     function movieInfo($something) 
     {
@@ -195,14 +203,6 @@ function AddToCart($item){
         for ($i = 0; $i < 1; $i++) 
         {
                 $imageURLs[]="https://image.tmdb.org/t/p/w500" . $data['results'][$i]['poster_path'];
-                
-                 //$config['images']['base_url']
-                 //$imageURLs[]=$data['images'][$i]['base_url'];
-                 //$imageURLs[]+=$data['images'][$i]['secure_base_url'];
-                 //$imageURLs[]+=$data['images'][$i]['backdrop_sizes'];
-                 
-               
-               // echo $imageURLs[$i];
         }
         $err = curl_error($curl);
         curl_close($curl);
@@ -249,13 +249,6 @@ function overView($something)
         
         return $imageURLs;
 }
-function insertToShopCart($movie)
-{
-     global $conn;
-    $sql = "INSERT INTO db_checkout FROM `db_movie` WHERE 1 ";
-        
-}
-    
 function replaceAll($text) 
     { 
         $text = strtolower(htmlentities($text)); 
