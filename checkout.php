@@ -53,6 +53,43 @@ function refreshCart()
 
 $username = $_GET['users'];
     
+    function displayHistory() {
+        global $conn;
+        
+        $sql = "SELECT * FROM `db_checkout` NATURAL LEFT OUTER JOIN `db_user` WHERE 1 ";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        echo "<h3>History</h3>";
+        echo "<div class='container'>";
+        echo "<table class='table table-striped'>";
+        echo "<thead>";
+        echo "<tr>";
+        echo "<th>User ID</th>";
+        echo "<th>User Name</th>";
+        echo "<th>Movie Name</th>";
+        echo "<th>Checkout Date</th>";
+        echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
+        
+        foreach($history as $historys) {
+            echo "<tr>";
+            echo"<td>".''.$historys['userId'].''."</td>"; 
+            echo"<td>".''.$historys['firstName'].' '.$historys['lastName'].''."</td>"; 
+            echo"<td>".''.$historys['movieName'].''."</td>"; 
+            echo"<td>".''.$historys['checkoutDate'].''."</td>"; 
+            echo"<td>";
+        }
+        
+        echo "</tbody>";
+        echo "</table>";
+        echo "</div>";
+        
+    }
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,39 +100,50 @@ $username = $_GET['users'];
                 return confirm(first+" do you wish to checkout ?");
             }
         </script>
-    <title>Checkout Cart</title>
-    <style>
-        @import url("css/styles.css");
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Checkout Cart</title>
+        <style>
+            @import url("css/styles.css");
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
-    <h1 class="display-4" id="checkOutTitle"> Shopping Cart</h1>
-    <hr>
- <nav class="navbar navbar-light">
- <a class="btn btn-success btn-lg" href="index.php" role="button"> Go Back </a>
- <input class="btn btn-primary btn-lg" type="submit" value="Purchase!" id="checkoutBtn">
-   <form>
-            <select name="users">
-                <option value="">Users</option>
-                <?=getUsers()?>
-            </select>
-        </form>
-</nav>
-<div class="container" id="checkoutCartTable">
-        <table class="table table-hover">
-        <thead>
-       <tr>
-        <th class="col-xs-3"> Title</th>
-        <th class="col-xs-3">Genre</th> 
-        <th class="col-xs-3">Year</th>
-        <th class="col-xs-3">Update Cart</th>
-        </thead>
-        <!-- --> 
-        <?=refreshCart()?>
-    </table>
-</div>
-<script src="js/javaFunctions.js"></script>
+        <h1 class="display-4" id="checkOutTitle"> Shopping Cart </h1>
+        <hr />
+        <nav class="navbar navbar-light">
+            <div class="container-fluid">
+                <a class="btn btn-success btn-lg" href="index.php" role="button"> Go Back </a>
+                <input class="btn btn-primary btn-lg" type="submit" value="Purchase!" id="checkoutBtn">
+                <form id="navbar-form">
+                    <input type="submit" name="history" class="btn btn-default btn-lg" value="History">
+                </form>
+                <form>
+                    <select name="users">
+                        <option value="">Users</option>
+                        <?=getUsers()?>
+                    </select>
+                </form>
+            </div>
+        </nav>
+        <div class="container" id="checkoutCartTable">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th class="col-xs-3"> Title</th>
+                    <th class="col-xs-3">Genre</th> 
+                    <th class="col-xs-3">Year</th>
+                    <th class="col-xs-3">Update Cart</th>
+                </thead>
+                <!-- --> 
+                <?=refreshCart()?>
+            </table>
+        </div>
+
+        <?php
+            if (isset($_GET['history'])) {
+                displayHistory();
+            }
+        ?>
+        <script src="js/javaFunctions.js"></script>
     </body>
 </html>

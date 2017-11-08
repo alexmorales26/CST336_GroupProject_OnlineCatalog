@@ -91,7 +91,7 @@
     }
     function displayMovies() {
         global $conn;
-        $sql = "SELECT * FROM `db_movie` LIMIT 0,20 ";
+        $sql = "SELECT * FROM `db_movie` WHERE 1 ";
         
         $namedParamaters = array();
         
@@ -128,6 +128,7 @@
             $sql .= " ORDER BY movieName DESC";
         }
         
+        $sql .= " LIMIT 20";
                 
         $statement = $conn->prepare($sql);
         $statement->execute($namedParamaters);
@@ -172,7 +173,7 @@
     }
     function displayMovies2() {
         global $conn;
-        $sql = "SELECT * FROM `db_movie` LIMIT 21,40";
+        $sql = "SELECT * FROM `db_movie` WHERE 1 ";
         
         $namedParamaters = array();
         
@@ -184,8 +185,8 @@
             }
             
             if (!empty($_GET['genre'])) {
-                $namedParamaters[':genre'] = $_GET['genre'];
-                $sql .= " AND movieGenre like '%" . $_GET['genre'] . "%'";
+                $namedParamaters[':genre'] = "%" . $_GET['genre'] . "%";
+                $sql .= " AND movieGenre like :genre";
             }
         }
         
@@ -208,6 +209,8 @@
         if (isset($_GET['z-a'])) {
             $sql .= " ORDER BY movieName DESC";
         }
+        
+        $sql .= " LIMIT 21, 40";
                 
         $statement = $conn->prepare($sql);
         $statement->execute($namedParamaters);
