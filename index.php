@@ -109,7 +109,7 @@ if(isset($_GET['movieId'])){
         </tr>
       </thead>
       <tbody>
-      <?=displayMovies()?>
+      <?=displayMovies2()?>
       </tbody>
       </table>
 

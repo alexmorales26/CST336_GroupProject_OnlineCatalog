@@ -210,7 +210,7 @@
             $sql .= " ORDER BY movieName DESC";
         }
         
-        $sql .= " LIMIT 21, 40";
+        $sql .= " LIMIT 20";
                 
         $statement = $conn->prepare($sql);
         $statement->execute($namedParamaters);
@@ -228,15 +228,13 @@
             $pic = movieInfo($name);
             $info = overView($name);
             echo "<div class='container2' >";
-            echo "<button type='button' class='btn btn-info btn-sm' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
-            //echo " ";
+            echo "<button type='button' class='btn btn-info btn-sm btn-block' data-toggle='modal' data-target='#".''.$name.''."'>Preview</button>";
           echo "<form action='checkout.php'><input type='hidden' name='movieId' value='".$i."'>
           <input type='submit'value='Add To Cart'
-          <button type='button'id='AddToCartBtn'class='btn btn-success btn-sm'</button></form>";
+          <button type='button'id='AddToCartBtn'class='btn btn-success btn-sm btn-block'</button></input></form>";
             $movieCollect[$i]=$movies['movieName'];
             $movieGenre[$i]=$movies['movieGenre'];
             $movieYear[$i]=$movies['movieYear'];
-          //echo "<button type='button' class='btn btn-success btn-sm' value='AddToCart(".''.$movies['movieName'].''.")'>Add to Cart</button>";
               echo "<div class='modal fade' id='".''.$name.''."' role='dialog'>";
                 echo "<div class='modal-dialog'>";
                   echo "<div class='modal-content'>";

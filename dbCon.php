@@ -1,9 +1,9 @@
 <?php
     function getDatabaseConnection(){
     
-    $host = 'us-cdbr-iron-east-05.cleardb.net';//Heroku
+    $host = 'us-cdbr-iron-east-05.cleardb.net';
     $dbname = 'heroku_5cc899d91ebdb63';
-    $username = 'bc84338c545651';
+    $username = 'bc84338c545651'; 
     $password = '06d1624f';
     
     //creates db connection
